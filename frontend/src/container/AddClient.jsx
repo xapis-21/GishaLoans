@@ -1,8 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { Component } from 'react'
+import { useState,useRef } from 'react'
 import {AiFillCloseSquare} from 'react-icons/ai'
 import {client} from '../client'
 import {Link} from 'react-router-dom'
+import {useReactToPrint} from 'react-to-print';
+import {PrintOut} from '../components/PrintOut'
 
 function AddClient() {
 
@@ -20,7 +22,7 @@ function AddClient() {
     fee: fee,
     refree:refree,
     refreeNumber: refreeNumber,
-    status: 'paid',
+    status: 'pending',
     close: `${parseInt(amount) * 1.2}`
   }
 
@@ -29,22 +31,30 @@ function AddClient() {
     client.create(doc).then((res) => {
       console.log(`Loanee was created, here is the document ${res}`)
       setSuccessful('Loan transaction saved successfully')
-
+      handlePrint()
       setTimeout(()=>{
         setSuccessful('')
       },3000)
     }).catch((error) =>{
       console.log(`lonee was not created, here is why ${error}`)
       setSuccessful('Loan transaction failed, consult technician')
-      setTimeout(()=>{
-        setSuccessful('')
-      },3000)
+      // setTimeout(()=>{
+      //   setSuccessful('')
+      //   setTimeout(handlePrint,1000)
+      // },3000)
     })
   }
 
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+      content: () => componentRef.current,
+    });
+  
   return (
-    <div style={{maxWidth:'700px'}} className='mx-auto w-full flex-col justify-center h-screen items-center'>
-
+    <div style={{maxWidth:'700px'}} className='mx-auto w-full flex-col justify-center h-fit items-center'>
+     <div className="hidden">
+      <PrintOut ref={componentRef}  date={'date'} name={name} loan={amount} refree={refree} fee={fee}/>
+     </div>
     <div className="exit w-full h-8 flex items-center justify-end mt-4 cursor-pointer pr-8">
        <Link to ='/' title='close'>
           <AiFillCloseSquare className='text-4xl hover:text-yellow-500 cursor-pointer'/>
