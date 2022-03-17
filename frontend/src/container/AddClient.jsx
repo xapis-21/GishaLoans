@@ -5,6 +5,7 @@ import {client} from '../client'
 import {Link} from 'react-router-dom'
 import {useReactToPrint} from 'react-to-print';
 import {PrintOut} from '../components/PrintOut'
+import { format,addDays } from 'date-fns'
 
 function AddClient() {
 
@@ -23,7 +24,8 @@ function AddClient() {
     refree:refree,
     refreeNumber: refreeNumber,
     status: 'pending',
-    close: `${parseInt(amount) * 1.2}`
+    close: `${parseInt(amount) * 1.2}`,
+    returnDate: addDays(new Date(format(new Date(), 'dd/MMM/yyyy')), 30)
   }
 
   const handleAddClient = (e)=>{

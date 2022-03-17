@@ -6,13 +6,18 @@ function Content() {
 
         const [loanees, setLoans] = useState(null)
 
-        const query = '*[_type == "loanee"] '
+        const query = '*[_type == "loanee"] | order(_createdAt desc) '
         useEffect(()=>{
              
-                client.fetch(query).then((data) => {
-                        setLoans(data)
-                        console.log(data)
-                })   
+                // client.fetch(query).then((data) => {
+                //         setLoans(data)
+                //         console.log(data)
+                // })   
+
+                client
+                .delete({query})
+                .then(console.log)
+                .catch(console.error)
         },[])
 
   return (

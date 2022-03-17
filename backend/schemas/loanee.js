@@ -42,6 +42,19 @@ export default {
             name: 'status',
             title: 'Status',
             type: 'string'
-        }
+        },
+        {
+            name: 'slug',
+            title: 'Slug',
+            type: 'slug',
+            options: {
+                source: 'name'
+            }
+        },
+        {
+            name: 'returnDate',
+            title: 'ReturnDate',
+            type: 'string'
+        },
     ]
 }

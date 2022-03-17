@@ -5,6 +5,7 @@
 body{
  min-height: 100vw;
  background-color: rgb(241 245 249);
+ font-family: 'lato', sans-serif;
 }
 
 @media all {

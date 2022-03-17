@@ -7,6 +7,7 @@ import {
 import AddClient from "./container/AddClient";
 import Home from "./container/Home";
 import Header from './components/Header'
+import LoneeInfo from "./container/LoneeInfo";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route element={<Home/>} path={'/'}/>
               <Route element={<AddClient/>} path={'/add_loan_client'}/>
+              {/* <Route element={<LoneeInfo/>} path={'/client/:slug'}/> */}
             </Routes>
           </div>
       )

@@ -1,11 +1,12 @@
 import React from 'react'
-import { format } from 'fecha';
+import { format} from 'date-fns';
 // export const PrintOut = React.forwardRef(({date,name,loan,fee}),ref) =>{
 //   return (
     
 //   )
 // };
-const date = format(new Date(), 'dd/MMM/YYYY hh:mm:ss'); 
+const date = format(new Date(), 'dd/MMM/yyyy'); 
+
 
   export const PrintOut = React.forwardRef(({name,loan,fee,refree},ref) => {
     return (
